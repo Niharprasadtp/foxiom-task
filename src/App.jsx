@@ -67,7 +67,7 @@ const DashboardContent = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-black text-gray-900 dark:text-white">Dashboard</h1>
-            <p className="text-gray-500 dark:text-gray-400">Welcome back! Manage your tasks with Redux Toolkit.</p>
+            <p className="text-gray-500 dark:text-gray-400">Welcome back! Manage your tasks.</p>
           </div>
           <button
             onClick={() => setIsFormOpen(true)}
