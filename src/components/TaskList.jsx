@@ -5,7 +5,7 @@ import { CheckCircle, Trash2, Calendar, AlertTriangle, ChevronRight, ChevronLeft
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  const { items: tasks, loading, error, filter, sortBy } = useSelector((state) => state.tasks);
+  const { items: tasks, loading, error, filter, sortBy, searchQuery } = useSelector((state) => state.tasks);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,7 +28,17 @@ const TaskList = () => {
   const filteredTasks = useMemo(() => {
     let result = [...tasks];
 
-    // Filter
+    // Filter by Search Query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      result = result.filter(
+        (t) =>
+          t.title.toLowerCase().includes(query) ||
+          t.description.toLowerCase().includes(query)
+      );
+    }
+
+    // Filter by Status
     if (filter !== 'All') {
       result = result.filter((t) => t.status === filter);
     }
@@ -46,12 +56,12 @@ const TaskList = () => {
     });
 
     return result;
-  }, [tasks, filter, sortBy]);
+  }, [tasks, filter, sortBy, searchQuery]);
 
-  // Reset page when filters change
+  // Reset page when filters or search change
   useEffect(() => {
     setCurrentPage(1);
-  }, [filter, sortBy, tasks.length]);
+  }, [filter, sortBy, searchQuery, tasks.length]);
 
   // Paginated tasks
   const paginatedTasks = useMemo(() => {

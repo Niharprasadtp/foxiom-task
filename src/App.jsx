@@ -16,7 +16,7 @@ const DashboardContent = () => {
     dispatch(getInitialTasks());
   }, [dispatch]);
 
-  // Apply dark mode to document
+  
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');

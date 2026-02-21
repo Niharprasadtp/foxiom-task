@@ -18,6 +18,7 @@ const initialState = {
   error: null,
   filter: 'All',
   sortBy: 'createdAt',
+  searchQuery: '',
   isDarkMode: localStorage.getItem('theme') === 'dark',
 };
 
@@ -51,6 +52,9 @@ const taskSlice = createSlice({
     },
     setSortBy: (state, action) => {
       state.sortBy = action.payload;
+    },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
     },
     toggleDarkMode: (state) => {
       state.isDarkMode = !state.isDarkMode;
@@ -88,6 +92,7 @@ export const {
   deleteTask, 
   setFilter, 
   setSortBy, 
+  setSearchQuery,
   toggleDarkMode 
 } = taskSlice.actions;
 
