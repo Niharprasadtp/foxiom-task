@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getInitialTasks, toggleDarkMode } from './store/taskSlice';
 import StatsOverview from './components/StatsOverview';
 import Filters from './components/Filters';
+import SearchBar from './components/SearchBar';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import { LayoutDashboard, Plus, Sun, Moon, Github } from 'lucide-react';
@@ -80,8 +81,11 @@ const DashboardContent = () => {
 
         <StatsOverview />
         
-        <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Tasks</h2>
+        <div className="mb-6 flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-1">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white shrink-0">Recent Tasks</h2>
+            <SearchBar />
+          </div>
           <Filters />
         </div>
 
